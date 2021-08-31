@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: JS miniSite Template: Created by Dr. John Teye Brown </title>
+    <title>Taco Cat: A JS mini project: Created by Dr. John Teye Brown </title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,7 +33,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="img/JOHNlogoupdated-min.png" class="d-line-block align-text-middle" 
-            width="30" height="24" alt="logo" /> App Name</a>
+            width="30" height="24" alt="logo" /> Taco Cat</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -50,7 +50,7 @@
                     <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="">Git Repo</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/teyeb/TacoCat">Git Repo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" target="_blank" href="">About</a>
@@ -70,18 +70,77 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers">
-                        <code class="language-javascript">
-                            //Call Hello World
-                                function helloWOrld(){
-                                    alert("Hello World!");
-                                }
+                        <code class="language-javascript">                            
+                             
+                        //obtain the string from the input
+                        //controller
+                        const getString = ()=>{
+                            document.getElementById("alert").classList.add("invisible");
+                        let string = document.getElementById("inputReverse").value;
+
+                            if(string.trim().length<2){
+                                return alert("The input string should be longer than 1!")
+                            }
+
+                            const updatedString = string.replace(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/g,'');
+                            //console.log("updatedString : ",updatedString)
+                            return reverseString(updatedString)
+                        }
+
+                        
+
+                        //concat a new string in reverse
+                        //model 
+                        const reverseString = string=>{
+                            let reversedString = "";
+
+                            //read array in reverse and concat into string
+                            for(let i = string.length-1; i>=0; i--){
+                                reversedString += string[i];
+                            }
+
+                            return displayMessage(reversedString,string);
+                        }
+
+                        //display message with reversed string
+                        //view
+                        const displayMessage = (reversedString,original) =>{
+                            //grab id of display message paragraph element
+                            const paragraph = document.getElementById("msg");
+
+                            //make it visible
+
+                            document.getElementById("alert").classList.remove("invisible");
+                        
+
+                            //console.log(original,': ',reversedString)
+
+                            if(original.replace(' ','').toLowerCase() === reversedString.replace(' ','').toLowerCase()){
+                                return paragraph.innerHTML = `Your reversed string is ${reversedString} and it is a <b style="color:blue">Palindrome</b>-- same in reverse`; 
+                            }
+                            return paragraph.innerHTML = `Your reversed string is ${reversedString.replace(' ','')}, but it is not a palindrome`;
+                        }
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                        <p>The code is structured in one function.</p>
-                        <h5>Hello World</h5>
-                        <p>Hello World is a function that displays an alert with a message of "hello world".</p>
+                            <br><br> 
+                        <h5>getString()</h5>
+                        <p>This function extracts the string entered in the input by the user.
+                             All special characters such as #, ~ ,. etc are removed.
+                        </p>
+
+                            <br><br> <br><br>
+                        <h5>reverString()</h5>
+                        <p>This function reverses the string, then calls the display function</p>
+
+
+                        <br><br> <br><br>
+                        <h5>displayMessage()</h5>
+                        <p>This function receives the reversed string, then verifies if it is the same as the original
+                            string. If it is, then it is declared a palindrome, otherwise, not. In verifying so, all 
+                            characters are converted to toLowerCase.
+                        </p>
                 </div>
             </div>
       </div>
